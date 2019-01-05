@@ -1,0 +1,32 @@
+version: '3'
+volumes:
+  mongo-db:
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: proyecto2018_api_dev
+    links:
+      - db
+    ports:
+      - 8000:8000
+    volumes:
+      - ..:/usr/src/app/
+    environment:
+      NODE_ENV: development
+      MONGO_URL: mongodb://db/proyecto2018
+      URL: ${URL_BASE}
+  db:
+    image: mongo:latest
+    volumes:
+      - mongo-db:/data/db
+    ports:
+    - 27017:27017
+  mongo-express:
+    image: mongo-express
+    links:
+      - db:mongo
+    ports:
+      - 8081:8081
+      
