@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 
+require('./category')
+require('./state')
+
 const querySchema = new Schema({
   firtsName: {
     type: String,
