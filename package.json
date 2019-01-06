@@ -5,7 +5,11 @@
   "author": "ulises-jeremias <ulisescf.24@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "serve:dev": "NODE_ENV=development nodemon ./server/server.js"
+    "serve:dev": "NODE_ENV=development nodemon ./server/server.js",
+    "serve:prod": "NODE_ENV=production node ./server/server.js",
+    "docker:build": "docker-compose -f docker/docker-compose.yml build",
+    "docker:start": "docker-compose -f docker/docker-compose.yml up",
+    "docker:dev": "yarn docker:build && yarn docker:start"
   },
   "dependencies": {
     "axios": "^0.18.0",

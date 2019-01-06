@@ -6,16 +6,6 @@ require('./category')
 require('./state')
 
 const querySchema = new Schema({
-  firtsName: {
-    type: String,
-    trim: true,
-    required: 'El campo `nombre` es requerido',
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    required: 'El campo `apellido` es requerido',
-  },
   email: {
     type: String,
     trim: true,
@@ -25,6 +15,11 @@ const querySchema = new Schema({
       /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/,
       'Ingrese un email valido - ejemplo@dominio.com',
     ],
+  },
+  description: {
+    type: String,
+    trim: true,
+    required: 'El campo `descripción` es requerido',
   },
   category: {
     required: 'El campo `categoría` es requerido',
