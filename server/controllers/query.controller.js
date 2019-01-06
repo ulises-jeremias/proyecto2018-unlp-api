@@ -21,7 +21,6 @@ exports.getQueries = async function getQueries(req, res) {
       .exec()
 
     res.status(200).json({ queries })
-
   } catch (err) {
     res.status(500).send({ error: err.message })  
   }
