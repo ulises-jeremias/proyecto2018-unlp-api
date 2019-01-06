@@ -1,4 +1,5 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -9,6 +10,9 @@ const isProduction = config.nodeEnv === 'production'
 const isTest = config.nodeEnv === 'testing'
 
 const app = express()
+
+app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main' }))
+app.set('view engine', '.hbs')
 
 mongoose.Promise = global.Promise
 
@@ -31,6 +35,10 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }))
 app.use(bodyParser.json({ limit: '20mb' }))
 app.use(express.static(path.resolve(__dirname, '../../', 'public/')))
 app.use(require('./routes'))
+
+app.get('/', (req, res) => {
+  res.render('home')
+})
 
 if (!isTest) {
   app.listen(config.port, err => {
