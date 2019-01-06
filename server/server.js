@@ -35,7 +35,7 @@ app.use(require('./routes'))
 if (!isTest) {
   app.listen(config.port, err => {
     if (!err) {
-      console.log('Listening on port ' + config.port)
+      console.log(`Listening on port ${config.port}`)
     }
   })
 }
